@@ -1,0 +1,24 @@
+{
+  "mode": "All",
+  "policyRule": {
+    "if": {
+      "anyOf": [
+        {
+          "field": "type",
+          "notIn": [
+            "Microsoft.ContainerRegistry/registries",
+            "Microsoft.ContainerInstance/containerGroups"
+          ]
+        },
+        {
+          "field": "location",
+          "notEquals": "eastus"
+        }
+      ]
+    },
+    "then": {
+      "effect": "Deny"
+    }
+  },
+  "parameters": {}
+}
