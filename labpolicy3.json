@@ -1,0 +1,79 @@
+{
+
+    "if":  {
+
+          "allOf": [
+
+            {
+
+              "field": "type",
+
+              "equals": "Microsoft.ContainerInstance/containerGroups"
+
+            },
+
+            {
+
+              "anyOf": [
+
+                {
+
+                  "not": {
+
+                    "field": "Microsoft.ContainerInstance/containerGroups/sku",
+
+                    "equals": "Standard"
+
+                  }
+
+                },
+
+                {
+
+                  "not": {
+
+                    "field": "Microsoft.ContainerInstance/containerGroups/containers[*].resources.requests.memoryInGB",
+
+                    "in": [
+
+                      "1",
+
+                      "1.5"
+
+                    ]
+
+                  }
+
+                },
+
+                {
+
+                  "not": {
+
+                    "field": "Microsoft.ContainerInstance/containerGroups/containers[*].resources.requests.cpu",
+
+                    "in": [
+
+                      "1"
+
+                    ]
+
+                  }
+
+                }
+
+              ]
+
+            }
+
+          ]
+
+        },
+
+      "then": {
+
+        "effect": "deny"
+
+      }
+
+  }
