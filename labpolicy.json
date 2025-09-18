@@ -1,34 +1,31 @@
 {
-  "mode": "All",
-  "policyRule": {
-    "if": {
-      "allOf": [
-        {
-          "anyOf": [
-            {
-              "field": "type",
-              "equals": "Microsoft.ContainerRegistry/registries"
-            },
-            {
-              "field": "type",
-              "equals": "Microsoft.ContainerInstance/containerGroups"
+  "if": {
+    "allOf": [
+      {
+        "anyOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.ContainerRegistry/registries"
+          },
+          {
+            "field": "type",
+            "equals": "Microsoft.ContainerInstance/containerGroups"
+          }
+        ]
+      },
+      {
+        "anyOf": [
+          {
+            "not": {
+              "field": "location",
+              "equals": "eastus"
             }
-          ]
-        },
-        {
-          "anyOf": [
-            {
-              "not": {
-                "field": "location",
-                "equals": "eastus"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    "then": {
-      "effect": "deny"
-    }
+          }
+        ]
+      }
+    ]
+  },
+  "then": {
+    "effect": "deny"
   }
 }
