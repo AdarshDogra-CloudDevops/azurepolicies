@@ -1,0 +1,28 @@
+{
+  "properties": {
+    "displayName": "Allow only ACR and ACI in East US",
+    "policyType": "Custom",
+    "mode": "All",
+    "description": "Only ACR and ACI can be created in East US. All other resource types or regions are denied.",
+    "policyRule": {
+      "if": {
+        "anyOf": [
+          {
+            "field": "type",
+            "notIn": [
+              "Microsoft.ContainerRegistry/registries",
+              "Microsoft.ContainerInstance/containerGroups"
+            ]
+          },
+          {
+            "field": "location",
+            "notEquals": "eastus"
+          }
+        ]
+      },
+      "then": {
+        "effect": "Deny"
+      }
+    }
+  }
+}
