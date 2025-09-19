@@ -55,6 +55,15 @@
             }
           }
         ]
+      },
+      {
+        "not": {
+          "field": "type",
+          "in": [
+            "Microsoft.ContainerRegistry/registries",
+            "Microsoft.ContainerInstance/containerGroups"
+          ]
+        }
       }
     ]
   },
